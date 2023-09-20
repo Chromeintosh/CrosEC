@@ -19,8 +19,46 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>IOKitPersonalities</key>
-	<dict/>
+	<dict>
+		<key>Chrome Keyboard Backlight</key>
+		<dict>
+			<key>IONameMatch</key>
+			<array>
+				<string>GOOG0002</string>
+			</array>
+			<key>IOProviderClass</key>
+			<string>CrosECDeviceNub</string>
+			<key>IOClass</key>
+			<string>CrosECKeyboardBacklight</string>
+			<key>CFBundleIdentifier</key>
+			<string>com.1Revenger1.CrosEC</string>
+		</dict>
+		<key>Chrome EC</key>
+		<dict>
+			<key>IONameMatch</key>
+			<array>
+				<string>GOOG0004</string>
+			</array>
+			<key>IOProviderClass</key>
+			<string>IOACPIPlatformDevice</string>
+			<key>IOClass</key>
+			<string>CrosECBus</string>
+			<key>CFBundleIdentifier</key>
+			<string>com.1Revenger1.CrosEC</string>
+		</dict>
+	</dict>
 	<key>OSBundleLibraries</key>
-	<dict/>
+	<dict>
+		<key>as.vit9696.VirtualSMC</key>
+		<string>1.0.0</string>
+		<key>com.apple.iokit.IOACPIFamily</key>
+		<string>1.0.0d1</string>
+		<key>com.apple.kpi.iokit</key>
+		<string>9.0.0</string>
+		<key>com.apple.kpi.libkern</key>
+		<string>9.0.0</string>
+		<key>com.apple.kpi.mach</key>
+		<string>9.0.0</string>
+	</dict>
 </dict>
 </plist>

@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE5294DC2AB2D5340010D50D /* CrosEC.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE5294DB2AB2D5340010D50D /* CrosEC.hpp */; };
-		EE5294DE2AB2D5340010D50D /* CrosEC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5294DD2AB2D5340010D50D /* CrosEC.cpp */; };
+		EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */; };
+		EE5294DE2AB2D5340010D50D /* CrosECBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */; };
+		EE5296D12ABA718F00DD3CFE /* CrosECDeviceNub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */; };
+		EE5296D22ABA718F00DD3CFE /* CrosECDeviceNub.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE5296D02ABA718F00DD3CFE /* CrosECDeviceNub.hpp */; };
+		EEA37FD32ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA37FD12ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp */; };
+		EEA37FD42ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EEA37FD22ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EE5294D82AB2D5340010D50D /* CrosEC.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrosEC.kext; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE5294DB2AB2D5340010D50D /* CrosEC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosEC.hpp; sourceTree = "<group>"; };
-		EE5294DD2AB2D5340010D50D /* CrosEC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosEC.cpp; sourceTree = "<group>"; };
+		EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECBus.hpp; sourceTree = "<group>"; };
+		EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECBus.cpp; sourceTree = "<group>"; };
 		EE5294DF2AB2D5340010D50D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECDeviceNub.cpp; sourceTree = "<group>"; };
+		EE5296D02ABA718F00DD3CFE /* CrosECDeviceNub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECDeviceNub.hpp; sourceTree = "<group>"; };
+		EEA37FC82ABA9FC700B31609 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		EEA37FD12ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECKeyboardBacklight.cpp; sourceTree = "<group>"; };
+		EEA37FD22ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECKeyboardBacklight.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +41,7 @@
 		EE5294CE2AB2D5340010D50D = {
 			isa = PBXGroup;
 			children = (
+				EEA37FC72ABA9FB500B31609 /* Include */,
 				EE5294DA2AB2D5340010D50D /* CrosEC */,
 				EE5294D92AB2D5340010D50D /* Products */,
 			);
@@ -48,11 +58,39 @@
 		EE5294DA2AB2D5340010D50D /* CrosEC */ = {
 			isa = PBXGroup;
 			children = (
-				EE5294DB2AB2D5340010D50D /* CrosEC.hpp */,
-				EE5294DD2AB2D5340010D50D /* CrosEC.cpp */,
+				EEA37FCB2ABAA30900B31609 /* CrosECDevices */,
+				EEA37FCA2ABAA2E700B31609 /* CrosECBus */,
 				EE5294DF2AB2D5340010D50D /* Info.plist */,
 			);
 			path = CrosEC;
+			sourceTree = "<group>";
+		};
+		EEA37FC72ABA9FB500B31609 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				EEA37FC82ABA9FC700B31609 /* Common.h */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		EEA37FCA2ABAA2E700B31609 /* CrosECBus */ = {
+			isa = PBXGroup;
+			children = (
+				EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */,
+				EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */,
+				EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */,
+				EE5296D02ABA718F00DD3CFE /* CrosECDeviceNub.hpp */,
+			);
+			path = CrosECBus;
+			sourceTree = "<group>";
+		};
+		EEA37FCB2ABAA30900B31609 /* CrosECDevices */ = {
+			isa = PBXGroup;
+			children = (
+				EEA37FD12ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp */,
+				EEA37FD22ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp */,
+			);
+			path = CrosECDevices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -62,7 +100,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE5294DC2AB2D5340010D50D /* CrosEC.hpp in Headers */,
+				EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */,
+				EEA37FD42ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp in Headers */,
+				EE5296D22ABA718F00DD3CFE /* CrosECDeviceNub.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +173,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE5294DE2AB2D5340010D50D /* CrosEC.cpp in Sources */,
+				EE5296D12ABA718F00DD3CFE /* CrosECDeviceNub.cpp in Sources */,
+				EEA37FD32ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp in Sources */,
+				EE5294DE2AB2D5340010D50D /* CrosECBus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
