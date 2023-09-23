@@ -9,6 +9,7 @@
 
 #include <IOKit/IOService.h>
 #include <IOKit/acpi/IOACPIPlatformDevice.h>
+
 #include "CrosECBus.hpp"
 
 class CrosECDeviceNub : public IOService
@@ -27,9 +28,31 @@ public:
         return kIOReturnNoDevice;
     }
     
+    IOReturn transferCommand(uint32_t command,
+                             uint32_t version,
+                             void * sendBuffer, size_t sendSize,
+                             void * recvBuffer, size_t recvSize) {
+        CrosECCommand cmd = {
+            version,
+            command,
+            sendSize,
+            (uint8_t *) sendBuffer,
+            recvSize,
+            (uint8_t *) recvBuffer,
+            0
+        };
+        
+        IOReturn ret = transferCommand(&cmd);
+        return ret != kIOReturnSuccess ? ret : cmd.ecResponse;
+    }
+    
     IOReturn transferCommand(CrosECCommand *cmd) {
         if (ecDev != nullptr) return ecDev->transferCommand(cmd);
         return kIOReturnNoDevice;
+    }
+    
+    IOACPIPlatformDevice *getACPIDevice() {
+        return acpiDev;
     }
     
 private:

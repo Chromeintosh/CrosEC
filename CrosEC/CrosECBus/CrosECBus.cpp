@@ -16,8 +16,8 @@ IOService *CrosECBus::probe(IOService *provider, int32_t *score) {
     
     /* TODO: Check for MEC transport */
     
-    if (inb(kCrosLPC_MemMap_Base + kCrosCMD_Id) != 'E' ||
-        inb(kCrosLPC_MemMap_Base + kCrosCMD_Id + 1) != 'C') {
+    if (inb(kCrosLPC_MemMap_Base + kCrosMEM_Id) != 'E' ||
+        inb(kCrosLPC_MemMap_Base + kCrosMEM_Id + 1) != 'C') {
         IOLog("CROS - Invalid ID\n");
         return nullptr;
     }
@@ -78,8 +78,8 @@ IOWorkLoop *CrosECBus::getWorkLoop() const {
 uint8_t CrosECBus::readBytesWithSum(uint32_t offset, uint32_t length, uint8_t *dest) {
     uint8_t sum = 0;
     
-    for (uint32_t i = offset; i < offset + length; i++) {
-        dest[i] = inb(i);
+    for (uint32_t i = 0; i < length; i++) {
+        dest[i] = inb(offset + i);
         sum += dest[i];
     }
     
@@ -89,8 +89,8 @@ uint8_t CrosECBus::readBytesWithSum(uint32_t offset, uint32_t length, uint8_t *d
 uint8_t CrosECBus::writeBytesWithSum(uint32_t offset, uint32_t length, uint8_t *dest) {
     uint8_t sum = 0;
     
-    for (uint32_t i = offset; i < offset + length; i++) {
-        outb(i, dest[i]);
+    for (uint32_t i = 0; i < length; i++) {
+        outb(offset + i, dest[i]);
         sum += dest[i];
     }
     
@@ -124,7 +124,7 @@ IOBufferMemoryDescriptor *CrosECBus::prepareHostCommand(CrosECCommand &cmd) {
     }
     
     for (int i = 0; i < cmd.sendSize; i++) {
-        checksum += cmd.data[i];
+        checksum += cmd.sendBuffer[i];
     }
     
     // Checksum of packet should add up to zero.
@@ -137,8 +137,42 @@ IOBufferMemoryDescriptor *CrosECBus::prepareHostCommand(CrosECCommand &cmd) {
     }
     
     buffer->writeBytes(0, &request, sizeof(request));
-    buffer->writeBytes(sizeof(request), cmd.data, cmd.sendSize);
+    buffer->writeBytes(sizeof(request), cmd.sendBuffer, cmd.sendSize);
     return buffer;
+}
+
+/* LPC command status byte masks */
+/* EC has written a byte in the data register and host hasn't read it yet */
+#define EC_LPC_STATUS_TO_HOST     0x01
+/* Host has written a command/data byte and the EC hasn't read it yet */
+#define EC_LPC_STATUS_FROM_HOST   0x02
+/* EC is processing a command */
+#define EC_LPC_STATUS_PROCESSING  0x04
+/* Last write to EC was a command, not data */
+#define EC_LPC_STATUS_LAST_CMD    0x08
+/* EC is in burst mode */
+#define EC_LPC_STATUS_BURST_MODE  0x10
+/* SCI event is pending (requesting SCI query) */
+#define EC_LPC_STATUS_SCI_PENDING 0x20
+/* SMI event is pending (requesting SMI query) */
+#define EC_LPC_STATUS_SMI_PENDING 0x40
+/* (reserved) */
+#define EC_LPC_STATUS_RESERVED    0x80
+
+static IOReturn waitForCommandFinish()
+{
+    int count = 0;
+    do {
+        IOSleep(10);
+        count += 1;
+        
+        if (count > 100) {
+            return kIOReturnTimeout;
+        }
+    } while (inb(kCrosLPC_Host_Cmd_Addr) & (EC_LPC_STATUS_FROM_HOST | EC_LPC_STATUS_PROCESSING));
+
+        
+    return kIOReturnSuccess;
 }
 
 IOReturn CrosECBus::transferCommandGated(CrosECCommand *cmd) {
@@ -159,6 +193,10 @@ IOReturn CrosECBus::transferCommandGated(CrosECCommand *cmd) {
     writeBytesWithSum(kCrosLPC_Host_Cmd_Addr, sizeof(byte), &byte);
     
     // TODO: Wait for response
+    if (waitForCommandFinish() != kIOReturnSuccess) {
+        IOLog("Cros - TIMEOUT\n");
+        return kIOReturnTimeout;
+    }
     
     // Check EC Response
     readBytesWithSum(kCrosLPC_Host_Data_Addr, sizeof(byte), &byte);
@@ -173,12 +211,12 @@ IOReturn CrosECBus::transferCommandGated(CrosECCommand *cmd) {
     cmd->ecResponse = response.result;
     
     if (response.dataLength != cmd->recvSize) {
-        IOLog("CROS - Response length does not match buffer size\n");
+        IOLog("CROS - Response length does not match buffer size (%x != %zx)\n", response.dataLength, cmd->recvSize);
         return kIOReturnDeviceError;
     }
     
     // Read Data
-    checksum += readBytesWithSum(kCrosLPC_Host_Pkt_Addr + sizeof(response), response.dataLength, cmd->data);
+    checksum += readBytesWithSum(kCrosLPC_Host_Pkt_Addr + sizeof(response), response.dataLength, cmd->recvBuffer);
     
     if (checksum != 0) {
         IOLog("CROS - Invalid Checksum\n");

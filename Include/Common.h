@@ -7,32 +7,38 @@
 
 #pragma once
 
+// Memmap (Read mem)
 enum {
     /* Thermal 0x00-0x1F */
-    kCrosCMD_Temp_Sensor        = 0x00,
-    kCrosCMD_Fan                = 0x10,
-    kCrosCMD_Temp_Sensor_B      = 0x18,
+    kCrosMEM_Temp_Sensor        = 0x00,
+    kCrosMEM_Fan                = 0x10,
+    kCrosMEM_Temp_Sensor_B      = 0x18,
     
     /* EC Info 0x20-0x27 */
-    kCrosCMD_Id                 = 0x20,
-    kCrosCMD_Id_Version         = 0x22,
-    kCrosCMD_Thermal_Version    = 0x23,
-    kCrosCMD_Battery_Version    = 0x24,
-    kCrosCMD_Switches_Version   = 0x25,
-    kCrosCMD_Events_Version     = 0x26,
-    kCrosCMD_Host_Command_Flags = 0x27,
+    kCrosMEM_Id                 = 0x20,
+    kCrosMEM_Id_Version         = 0x22,
+    kCrosMEM_Thermal_Version    = 0x23,
+    kCrosMEM_Battery_Version    = 0x24,
+    kCrosMEM_Switches_Version   = 0x25,
+    kCrosMEM_Events_Version     = 0x26,
+    kCrosMEM_Host_Command_Flags = 0x27,
     
-    kCrosCMD_Switches           = 0x30,
-    kCrosCMD_Host_Events        = 0x34,
+    kCrosMEM_Switches           = 0x30,
+    kCrosMEM_Host_Events        = 0x34,
     
     /* Battery Data 0x40-0x7F */
     
     /* Sensor Hub Data */
     
-    kCrosCMD_ALS_Data           = 0x80,
-    kCrosCMD_Accel_Status       = 0x90,
-    kCrosCMD_Accel_Data         = 0x92,
-    kCrosCMD_Gyro_Data          = 0xA0
+    kCrosMEM_ALS_Data           = 0x80,
+    kCrosMEM_Accel_Status       = 0x90,
+    kCrosMEM_Accel_Data         = 0x92,
+    kCrosMEM_Gyro_Data          = 0xA0
+};
+
+// Commands
+enum {
+    kCrosCMD_Motion_Sense       = 0x2B
 };
 
 /*
@@ -66,10 +72,11 @@ enum {
 struct CrosECCommand {
     uint32_t version;
     uint32_t command;
-    uint32_t sendSize;
-    uint32_t recvSize;
+    size_t sendSize;
+    uint8_t *sendBuffer;
+    size_t recvSize;
+    uint8_t *recvBuffer;
     uint32_t ecResponse;
-    uint8_t *data;
 };
 
 struct CrosECReadMemory {

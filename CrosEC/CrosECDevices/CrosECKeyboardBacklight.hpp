@@ -9,7 +9,6 @@
 
 #include <IOKit/IOService.h>
 
-#include "CrosECKeyboardBacklight.hpp"
 #include "CrosECDeviceNub.hpp"
 
 class CrosECKeyboardBacklight : public IOService {

@@ -20,12 +20,27 @@
 	<string>1</string>
 	<key>IOKitPersonalities</key>
 	<dict>
+		<key>Chrome Sensor Hub</key>
+		<dict>
+			<key>IOPropertyMatch</key>
+			<dict>
+				<key>name</key>
+				<string>GOOG0006</string>
+			</dict>
+			<key>IOProviderClass</key>
+			<string>CrosECDeviceNub</string>
+			<key>IOClass</key>
+			<string>CrosECSensorHub</string>
+			<key>CFBundleIdentifier</key>
+			<string>com.1Revenger1.CrosEC</string>
+		</dict>
 		<key>Chrome Keyboard Backlight</key>
 		<dict>
-			<key>IONameMatch</key>
-			<array>
+			<key>IOPropertyMatch</key>
+			<dict>
+				<key>name</key>
 				<string>GOOG0002</string>
-			</array>
+			</dict>
 			<key>IOProviderClass</key>
 			<string>CrosECDeviceNub</string>
 			<key>IOClass</key>
@@ -49,8 +64,6 @@
 	</dict>
 	<key>OSBundleLibraries</key>
 	<dict>
-		<key>as.vit9696.VirtualSMC</key>
-		<string>1.0.0</string>
 		<key>com.apple.iokit.IOACPIFamily</key>
 		<string>1.0.0d1</string>
 		<key>com.apple.kpi.iokit</key>
