@@ -22,6 +22,12 @@ constexpr uint32_t TIMER_MS = 250;
 constexpr int32_t RAW_TO_1G = 16383;
 constexpr uint32_t kIOFBSetTransform = 0x00000400;
 
+constexpr static size_t CrosECNumPowerStates = 2;
+static IOPMPowerState CrosECPowerStates[CrosECNumPowerStates] = {
+    {1, kIOServicePowerCapabilityOff, kIOServicePowerCapabilityOff, kIOServicePowerCapabilityOff, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1, kIOServicePowerCapabilityOn, kIOServicePowerCapabilityOn, kIOServicePowerCapabilityOn, 0, 0, 0, 0, 0, 0, 0, 0}
+};
+
 CrosECSensorHub *CrosECSensorHub::probe(IOService *provider, int32_t *score) {
     CrosSensorDumpRequest request {
         CrosSensor_Cmd_MotionDump, 0
@@ -108,14 +114,19 @@ bool CrosECSensorHub::start(IOService *provider) {
         return false;
     }
     
-    // Set initial state and kick off sensor timer if needed
-    setTabletModeGated();
+    // Joining the power tree will call setPowerState
+    // This will call setTabletModeGated which triggers the timer if needed
+    PMinit();
+    nub->joinPMtree(this);
+    (void) registerPowerDriver(this, CrosECPowerStates, 2);
     
     registerService();
     return true;
 }
 
 void CrosECSensorHub::stop(IOService *provider) {
+    PMstop();
+    
     if (workloop != nullptr) {
         if (timer != nullptr) {
             timer->disable();
@@ -136,6 +147,16 @@ void CrosECSensorHub::stop(IOService *provider) {
 }
 
 IOReturn CrosECSensorHub::setPowerState(unsigned long ordinal, IOService *dev) {
+    if (ordinal) {
+        // Get lid state and trigger timer is needed
+        commandGate->enable();
+        commandGate->runCommand();
+    } else {
+        commandGate->disable();
+        timer->disable();
+        tabletMode = CrosSensor_Mode_Unknown;
+    }
+    
     return kIOReturnSuccess;
 }
 

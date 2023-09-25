@@ -12,8 +12,7 @@
 
 #include "CrosECBus.hpp"
 
-class CrosECDeviceNub : public IOService
-{
+class CrosECDeviceNub : public IOService {
     OSDeclareDefaultStructors(CrosECDeviceNub);
 public:
     bool start(IOService *provider) override;

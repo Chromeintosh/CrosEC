@@ -24,6 +24,19 @@ constexpr uint32_t kCrosLPC_Host_Pkt_Size   = 0x100;
 constexpr uint32_t kCrosLPC_MemMap_Base     = 0x900;
 constexpr uint32_t kCrosLPC_MemMap_Size     = 0x100;
 
+// LPC Command Status byte masks
+enum {
+    // Host has not read data register yet
+    kCrosLPC_Status_ToHost      = 1 << 0,
+    // EC has not read command/date byte
+    kCrosLPC_Status_FromHost    = 1 << 1,
+    kCrosLPC_Status_Processing  = 1 << 2,
+    kCrosLPC_Status_LastWasCmd  = 1 << 3,
+    kCrosLPC_Status_BurstMode   = 1 << 4,
+    kCrosLPC_Status_SCIPending  = 1 << 5,
+    kCrosLPC_Status_SMIPending  = 1 << 6,
+    kCrosLPC_Status_Reserved    = 1 << 7
+};
 
 #define packed __attribute__ ((aligned (1)))
 

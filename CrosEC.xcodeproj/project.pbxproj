@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE38E9082AC0B17500EF14F3 /* CrosECUserClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */; };
+		EE38E9092AC0B17500EF14F3 /* CrosECUserClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */; };
 		EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */; };
 		EE5294DE2AB2D5340010D50D /* CrosECBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */; };
 		EE5296D12ABA718F00DD3CFE /* CrosECDeviceNub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECUserClient.cpp; sourceTree = "<group>"; };
+		EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECUserClient.hpp; sourceTree = "<group>"; };
 		EE5294D82AB2D5340010D50D /* CrosEC.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrosEC.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECBus.hpp; sourceTree = "<group>"; };
 		EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECBus.cpp; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */,
 				EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */,
 				EE5296D02ABA718F00DD3CFE /* CrosECDeviceNub.hpp */,
+				EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */,
+				EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */,
 			);
 			path = CrosECBus;
 			sourceTree = "<group>";
@@ -109,6 +115,7 @@
 				EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */,
 				EEA37FDA2ABBD06C00B31609 /* CrosECSensorHub.hpp in Headers */,
 				EEA37FD42ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp in Headers */,
+				EE38E9092AC0B17500EF14F3 /* CrosECUserClient.hpp in Headers */,
 				EE5296D22ABA718F00DD3CFE /* CrosECDeviceNub.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +190,7 @@
 				EEA37FD92ABBD06C00B31609 /* CrosECSensorHub.cpp in Sources */,
 				EE5296D12ABA718F00DD3CFE /* CrosECDeviceNub.cpp in Sources */,
 				EEA37FD32ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp in Sources */,
+				EE38E9082AC0B17500EF14F3 /* CrosECUserClient.cpp in Sources */,
 				EE5294DE2AB2D5340010D50D /* CrosECBus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

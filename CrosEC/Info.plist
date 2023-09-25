@@ -50,6 +50,8 @@
 		</dict>
 		<key>Chrome EC</key>
 		<dict>
+			<key>IOUserClientClass</key>
+			<string>CrosECUserClient</string>
 			<key>IONameMatch</key>
 			<array>
 				<string>GOOG0004</string>

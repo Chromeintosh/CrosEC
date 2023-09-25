@@ -141,27 +141,11 @@ IOBufferMemoryDescriptor *CrosECBus::prepareHostCommand(CrosECCommand &cmd) {
     return buffer;
 }
 
-/* LPC command status byte masks */
-/* EC has written a byte in the data register and host hasn't read it yet */
-#define EC_LPC_STATUS_TO_HOST     0x01
-/* Host has written a command/data byte and the EC hasn't read it yet */
-#define EC_LPC_STATUS_FROM_HOST   0x02
-/* EC is processing a command */
-#define EC_LPC_STATUS_PROCESSING  0x04
-/* Last write to EC was a command, not data */
-#define EC_LPC_STATUS_LAST_CMD    0x08
-/* EC is in burst mode */
-#define EC_LPC_STATUS_BURST_MODE  0x10
-/* SCI event is pending (requesting SCI query) */
-#define EC_LPC_STATUS_SCI_PENDING 0x20
-/* SMI event is pending (requesting SMI query) */
-#define EC_LPC_STATUS_SMI_PENDING 0x40
-/* (reserved) */
-#define EC_LPC_STATUS_RESERVED    0x80
-
 static IOReturn waitForCommandFinish()
 {
+    const uint8_t processingMask = kCrosLPC_Status_FromHost | kCrosLPC_Status_Processing;
     int count = 0;
+    
     do {
         IOSleep(10);
         count += 1;
@@ -169,7 +153,7 @@ static IOReturn waitForCommandFinish()
         if (count > 100) {
             return kIOReturnTimeout;
         }
-    } while (inb(kCrosLPC_Host_Cmd_Addr) & (EC_LPC_STATUS_FROM_HOST | EC_LPC_STATUS_PROCESSING));
+    } while (inb(kCrosLPC_Host_Cmd_Addr) & processingMask);
 
         
     return kIOReturnSuccess;
@@ -192,7 +176,7 @@ IOReturn CrosECBus::transferCommandGated(CrosECCommand *cmd) {
     // Start Command
     writeBytesWithSum(kCrosLPC_Host_Cmd_Addr, sizeof(byte), &byte);
     
-    // TODO: Wait for response
+    // Wait for EC response
     if (waitForCommandFinish() != kIOReturnSuccess) {
         IOLog("Cros - TIMEOUT\n");
         return kIOReturnTimeout;
@@ -244,24 +228,21 @@ IOReturn CrosECBus::readMemoryBytes(CrosECReadMemory *cmd) {
     return commandGate->attemptAction(OSMemberFunctionCast(Action, this, &CrosECBus::readMemoryBytesGated));
 }
 
-
 IOReturn CrosECBus::readMemoryStringGated(CrosECReadMemory *cmd) {
-    char c;
-    uint32_t len = 0;
+    int i;
     
     if (cmd->offset >= kCrosLPC_MemMap_Size - cmd->size) {
         return kIOReturnOverrun;
     }
     
-    for (int i = cmd->offset; i < kCrosLPC_MemMap_Size; i++) {
-        readBytesWithSum(kCrosLPC_MemMap_Base + i, sizeof(c), (uint8_t *) &c);
-        len++;
-        if (c == '\0') {
+    for (i = 0; i < cmd->size; i++) {
+        readBytesWithSum(kCrosLPC_MemMap_Base + cmd->offset + i, sizeof(char), &cmd->data[i]);
+        if (cmd->data[i] == '\0') {
             break;
         }
     }
     
-    cmd->size = len;
+    cmd->size = i;
     return kIOReturnSuccess;
 }
 
