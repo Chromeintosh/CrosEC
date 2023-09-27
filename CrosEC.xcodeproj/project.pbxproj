@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE33E8032AC3E3B40093E3E7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE33E8022AC3E3B40093E3E7 /* main.cpp */; };
+		EE33E80E2AC3E9D40093E3E7 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE33E80C2AC3E9880093E3E7 /* libkmod.a */; };
+		EE33E8252AC3EBB10093E3E7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE33E8242AC3EBB10093E3E7 /* CoreFoundation.framework */; };
+		EE33E82D2AC3EC190093E3E7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE33E82C2AC3EC190093E3E7 /* IOKit.framework */; };
 		EE38E9082AC0B17500EF14F3 /* CrosECUserClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */; };
 		EE38E9092AC0B17500EF14F3 /* CrosECUserClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */; };
 		EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */; };
@@ -19,7 +23,25 @@
 		EEA37FDA2ABBD06C00B31609 /* CrosECSensorHub.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EEA37FD82ABBD06C00B31609 /* CrosECSensorHub.hpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EE33E7FE2AC3E3B40093E3E7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EE33E8002AC3E3B40093E3E7 /* CrosECVersion */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CrosECVersion; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE33E8022AC3E3B40093E3E7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EE33E80C2AC3E9880093E3E7 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = usr/lib/libkmod.a; sourceTree = SDKROOT; };
+		EE33E8122AC3E9E40093E3E7 /* libkmodc++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libkmodc++.a"; path = "usr/lib/libkmodc++.a"; sourceTree = SDKROOT; };
+		EE33E8242AC3EBB10093E3E7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		EE33E82C2AC3EC190093E3E7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECUserClient.cpp; sourceTree = "<group>"; };
 		EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECUserClient.hpp; sourceTree = "<group>"; };
 		EE5294D82AB2D5340010D50D /* CrosEC.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrosEC.kext; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,22 +58,53 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EE33E7FD2AC3E3B40093E3E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE33E82D2AC3EC190093E3E7 /* IOKit.framework in Frameworks */,
+				EE33E8252AC3EBB10093E3E7 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE5294D52AB2D5340010D50D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE33E80E2AC3E9D40093E3E7 /* libkmod.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE33E8012AC3E3B40093E3E7 /* CrosECVersion */ = {
+			isa = PBXGroup;
+			children = (
+				EE33E8022AC3E3B40093E3E7 /* main.cpp */,
+			);
+			path = CrosECVersion;
+			sourceTree = "<group>";
+		};
+		EE33E80B2AC3E9880093E3E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE33E82C2AC3EC190093E3E7 /* IOKit.framework */,
+				EE33E8242AC3EBB10093E3E7 /* CoreFoundation.framework */,
+				EE33E8122AC3E9E40093E3E7 /* libkmodc++.a */,
+				EE33E80C2AC3E9880093E3E7 /* libkmod.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE5294CE2AB2D5340010D50D = {
 			isa = PBXGroup;
 			children = (
 				EEA37FC72ABA9FB500B31609 /* Include */,
 				EE5294DA2AB2D5340010D50D /* CrosEC */,
+				EE33E8012AC3E3B40093E3E7 /* CrosECVersion */,
 				EE5294D92AB2D5340010D50D /* Products */,
+				EE33E80B2AC3E9880093E3E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				EE5294D82AB2D5340010D50D /* CrosEC.kext */,
+				EE33E8002AC3E3B40093E3E7 /* CrosECVersion */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +177,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		EE33E7FF2AC3E3B40093E3E7 /* CrosECVersion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE33E8042AC3E3B40093E3E7 /* Build configuration list for PBXNativeTarget "CrosECVersion" */;
+			buildPhases = (
+				EE33E7FC2AC3E3B40093E3E7 /* Sources */,
+				EE33E7FD2AC3E3B40093E3E7 /* Frameworks */,
+				EE33E7FE2AC3E3B40093E3E7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrosECVersion;
+			productName = CrosECVersion;
+			productReference = EE33E8002AC3E3B40093E3E7 /* CrosECVersion */;
+			productType = "com.apple.product-type.tool";
+		};
 		EE5294D72AB2D5340010D50D /* CrosEC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE5294E22AB2D5340010D50D /* Build configuration list for PBXNativeTarget "CrosEC" */;
@@ -149,6 +220,9 @@
 			attributes = {
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					EE33E7FF2AC3E3B40093E3E7 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					EE5294D72AB2D5340010D50D = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -168,6 +242,7 @@
 			projectRoot = "";
 			targets = (
 				EE5294D72AB2D5340010D50D /* CrosEC */,
+				EE33E7FF2AC3E3B40093E3E7 /* CrosECVersion */,
 			);
 		};
 /* End PBXProject section */
@@ -183,6 +258,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EE33E7FC2AC3E3B40093E3E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE33E8032AC3E3B40093E3E7 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE5294D42AB2D5340010D50D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +281,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		EE33E8052AC3E3B40093E3E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EE33E8062AC3E3B40093E3E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EE5294E02AB2D5340010D50D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -249,6 +350,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -302,6 +406,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -348,6 +455,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EE33E8042AC3E3B40093E3E7 /* Build configuration list for PBXNativeTarget "CrosECVersion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE33E8052AC3E3B40093E3E7 /* Debug */,
+				EE33E8062AC3E3B40093E3E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EE5294D22AB2D5340010D50D /* Build configuration list for PBXProject "CrosEC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

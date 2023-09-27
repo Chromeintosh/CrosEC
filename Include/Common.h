@@ -38,7 +38,8 @@ enum {
 
 // Commands
 enum {
-    kCrosCMD_Motion_Sense       = 0x2B
+    kCrosCMD_Version            = 0x02,
+    kCrosCMD_Motion_Sense       = 0x2B,
 };
 
 /*
@@ -69,18 +70,36 @@ enum {
     kCrosRes_Dup_Unavailable        = 20,
 };
 
-struct CrosECCommand {
+constexpr size_t kCrosECMaxPacketDataLen = 0x100;
+constexpr size_t kCrosECMaxMemoryReadLen = 0x100;
+constexpr size_t kCrosECUserReadStringSize = 0xFFFFFFFF;
+
+enum {
+    kCrosUser_Command = 0,
+    kCrosUser_ReadMem = 1,
+    kCrosUser_MaxMethod
+};
+
+struct CrosECUserCommandRequest {
     uint32_t version;
     uint32_t command;
     size_t sendSize;
-    uint8_t *sendBuffer;
-    size_t recvSize;
-    uint8_t *recvBuffer;
-    uint32_t ecResponse;
+    size_t receiveSize;
+    uint8_t sendBuffer[kCrosECMaxPacketDataLen];
 };
 
-struct CrosECReadMemory {
+struct CrosECUserCommandResponse {
+    uint32_t ecResponse;
+    uint8_t receiveBuffer[kCrosECMaxPacketDataLen];
+};
+
+struct CrosECUserReadMemoryRequest {
     uint32_t offset;
-    uint32_t size;
-    uint8_t *data;
+    size_t readSize;
+    uint8_t data[kCrosECMaxMemoryReadLen];
+};
+
+struct CrosECUserReadMemoryResponse {
+    size_t stringSize;
+    uint8_t data[kCrosECMaxMemoryReadLen];
 };

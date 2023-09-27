@@ -8,6 +8,22 @@
 
 #pragma once
 
+struct CrosECCommand {
+    uint32_t version;
+    uint32_t command;
+    size_t sendSize;
+    uint8_t *sendBuffer;
+    size_t recvSize;
+    uint8_t *recvBuffer;
+    uint32_t ecResponse;
+};
+
+struct CrosECReadMemory {
+    uint32_t offset;
+    uint32_t size;
+    uint8_t *data;
+};
+
 /* ACPI Commands */
 constexpr uint32_t kCrosLPC_ACPI_Data_Addr  = 0x62;
 constexpr uint32_t kCrosLPC_ACPI_Cmd_Addr   = 0x66;
