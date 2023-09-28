@@ -50,7 +50,7 @@
 		EE5294DF2AB2D5340010D50D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECDeviceNub.cpp; sourceTree = "<group>"; };
 		EE5296D02ABA718F00DD3CFE /* CrosECDeviceNub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECDeviceNub.hpp; sourceTree = "<group>"; };
-		EEA37FC82ABA9FC700B31609 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		EEA37FC82ABA9FC700B31609 /* CrosECShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrosECShared.h; sourceTree = "<group>"; };
 		EEA37FD12ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECKeyboardBacklight.cpp; sourceTree = "<group>"; };
 		EEA37FD22ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECKeyboardBacklight.hpp; sourceTree = "<group>"; };
 		EEA37FD72ABBD06C00B31609 /* CrosECSensorHub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECSensorHub.cpp; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		EEA37FC72ABA9FB500B31609 /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				EEA37FC82ABA9FC700B31609 /* Common.h */,
+				EEA37FC82ABA9FC700B31609 /* CrosECShared.h */,
 			);
 			path = Include;
 			sourceTree = "<group>";

@@ -8,7 +8,7 @@
 #pragma once
 
 #include <IOKit/IOUserClient.h>
-#include "Common.h"
+#include "CrosECShared.h"
 
 class CrosECBus;
 

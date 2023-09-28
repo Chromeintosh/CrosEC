@@ -4,7 +4,7 @@
 #include <IOKit/IOCommandGate.h>
 #include <IOKit/IOWorkLoop.h>
 
-#include "Common.h"
+#include "CrosECShared.h"
 
 #pragma once
 

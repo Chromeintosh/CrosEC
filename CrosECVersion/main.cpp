@@ -8,7 +8,7 @@
 #include <iostream>
 #include <IOKit/IOKitLib.h>
 #include <mach/mach_error.h>
-#include "Common.h"
+#include "CrosECShared.h"
 
 int main(int argc, const char * argv[]) {
     io_service_t service;
