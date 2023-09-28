@@ -84,19 +84,19 @@ struct CrosECUserCommandRequest {
     uint32_t version;
     uint32_t command;
     size_t sendSize;
-    size_t receiveSize;
+    size_t maxReceiveSize;
     uint8_t sendBuffer[kCrosECMaxPacketDataLen];
 };
 
 struct CrosECUserCommandResponse {
     uint32_t ecResponse;
+    size_t receivedSize;
     uint8_t receiveBuffer[kCrosECMaxPacketDataLen];
 };
 
 struct CrosECUserReadMemoryRequest {
     uint32_t offset;
     size_t readSize;
-    uint8_t data[kCrosECMaxMemoryReadLen];
 };
 
 struct CrosECUserReadMemoryResponse {

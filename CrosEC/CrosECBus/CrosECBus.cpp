@@ -193,8 +193,9 @@ IOReturn CrosECBus::transferCommandGated(CrosECCommand *cmd) {
     // Read Response Header
     checksum = readBytesWithSum(kCrosLPC_Host_Pkt_Addr, sizeof(response), (uint8_t *) &response);
     cmd->ecResponse = response.result;
+    cmd->recvSize = response.dataLength;
     
-    if (response.dataLength != cmd->recvSize) {
+    if (response.dataLength > cmd->recvSize) {
         IOLog("CROS - Response length does not match buffer size (%x != %zx)\n", response.dataLength, cmd->recvSize);
         return kIOReturnDeviceError;
     }
@@ -225,7 +226,7 @@ IOReturn CrosECBus::readMemoryBytesGated(CrosECReadMemory *cmd) {
 }
 
 IOReturn CrosECBus::readMemoryBytes(CrosECReadMemory *cmd) {
-    return commandGate->attemptAction(OSMemberFunctionCast(Action, this, &CrosECBus::readMemoryBytesGated));
+    return commandGate->attemptAction(OSMemberFunctionCast(Action, this, &CrosECBus::readMemoryBytesGated), cmd);
 }
 
 IOReturn CrosECBus::readMemoryStringGated(CrosECReadMemory *cmd) {
@@ -247,7 +248,7 @@ IOReturn CrosECBus::readMemoryStringGated(CrosECReadMemory *cmd) {
 }
 
 IOReturn CrosECBus::readMemoryString(CrosECReadMemory *cmd) {
-    return commandGate->attemptAction(OSMemberFunctionCast(Action, this, &CrosECBus::readMemoryStringGated));
+    return commandGate->attemptAction(OSMemberFunctionCast(Action, this, &CrosECBus::readMemoryStringGated), cmd);
 }
 
 bool CrosECBus::publishNubs() {

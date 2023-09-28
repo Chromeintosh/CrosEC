@@ -53,7 +53,7 @@ IOReturn CrosECUserClient::userCommand(CrosECUserCommandRequest *request, CrosEC
     }
     
     if (request->sendSize >= kCrosECMaxPacketDataLen ||
-        request->receiveSize >= kCrosECMaxPacketDataLen) {
+        request->maxReceiveSize >= kCrosECMaxPacketDataLen) {
         return kIOReturnOverrun;
     }
     
@@ -61,7 +61,7 @@ IOReturn CrosECUserClient::userCommand(CrosECUserCommandRequest *request, CrosEC
     cmd.command = request->command;
     cmd.version = request->version;
     cmd.sendSize = request->sendSize;
-    cmd.recvSize = request->receiveSize;
+    cmd.recvSize = request->maxReceiveSize;
     cmd.sendBuffer = request->sendBuffer;
     
     // Response
@@ -70,6 +70,7 @@ IOReturn CrosECUserClient::userCommand(CrosECUserCommandRequest *request, CrosEC
     
     IOReturn transferRet = ec->transferCommand(&cmd);
     response->ecResponse = cmd.ecResponse;
+    response->receivedSize = cmd.recvSize;
     
     return transferRet;
 }
