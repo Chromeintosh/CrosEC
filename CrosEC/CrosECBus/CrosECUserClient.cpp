@@ -28,6 +28,10 @@ bool CrosECUserClient::start(IOService *provider) {
 }
 
 IOReturn CrosECUserClient::clientClose() {
+    if (!isInactive()) {
+        terminate();
+    }
+    
     return kIOReturnSuccess;
 }
 
