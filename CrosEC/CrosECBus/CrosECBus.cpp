@@ -1,6 +1,7 @@
 
 #include <architecture/i386/pio.h>
 #include <IOKit/IOBufferMemoryDescriptor.h>
+#include <kern_util.hpp>
 
 #include "CrosECBus.hpp"
 #include "CrosECDeviceNub.hpp"
@@ -288,4 +289,9 @@ bool CrosECBus::publishNubs() {
     
     children->release();
     return true;
+}
+
+EXPORT extern "C" kern_return_t cros_ec_kern_stop(kmod_info_t *, void *) {
+    // It is not safe to unload VirtualSMC plugins!
+    return KERN_FAILURE;
 }

@@ -13,6 +13,11 @@
 		EE33E82D2AC3EC190093E3E7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE33E82C2AC3EC190093E3E7 /* IOKit.framework */; };
 		EE38E9082AC0B17500EF14F3 /* CrosECUserClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */; };
 		EE38E9092AC0B17500EF14F3 /* CrosECUserClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */; };
+		EE3E62142AC6813A00A45060 /* VirtualSMCSDK in Resources */ = {isa = PBXBuildFile; fileRef = EE3E62132AC6813A00A45060 /* VirtualSMCSDK */; };
+		EE3E621B2AC6820100A45060 /* SMCLightSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3E62192AC6820100A45060 /* SMCLightSensor.cpp */; };
+		EE3E621C2AC6820100A45060 /* SMCLightSensor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE3E621A2AC6820100A45060 /* SMCLightSensor.hpp */; };
+		EE3E622B2AC685BB00A45060 /* AmbientLightValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3E62292AC685BB00A45060 /* AmbientLightValue.cpp */; };
+		EE3E622C2AC685BB00A45060 /* AmbientLightValue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE3E622A2AC685BB00A45060 /* AmbientLightValue.hpp */; };
 		EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */; };
 		EE5294DE2AB2D5340010D50D /* CrosECBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */; };
 		EE5296D12ABA718F00DD3CFE /* CrosECDeviceNub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5296CF2ABA718F00DD3CFE /* CrosECDeviceNub.cpp */; };
@@ -44,6 +49,11 @@
 		EE33E82C2AC3EC190093E3E7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EE38E9062AC0B17500EF14F3 /* CrosECUserClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECUserClient.cpp; sourceTree = "<group>"; };
 		EE38E9072AC0B17500EF14F3 /* CrosECUserClient.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECUserClient.hpp; sourceTree = "<group>"; };
+		EE3E62132AC6813A00A45060 /* VirtualSMCSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = VirtualSMCSDK; path = VirtualSMC.kext/Contents/Resources/VirtualSMCSDK; sourceTree = "<group>"; };
+		EE3E62192AC6820100A45060 /* SMCLightSensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SMCLightSensor.cpp; sourceTree = "<group>"; };
+		EE3E621A2AC6820100A45060 /* SMCLightSensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SMCLightSensor.hpp; sourceTree = "<group>"; };
+		EE3E62292AC685BB00A45060 /* AmbientLightValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AmbientLightValue.cpp; sourceTree = "<group>"; };
+		EE3E622A2AC685BB00A45060 /* AmbientLightValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AmbientLightValue.hpp; sourceTree = "<group>"; };
 		EE5294D82AB2D5340010D50D /* CrosEC.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrosEC.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE5294DB2AB2D5340010D50D /* CrosECBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrosECBus.hpp; sourceTree = "<group>"; };
 		EE5294DD2AB2D5340010D50D /* CrosECBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CrosECBus.cpp; sourceTree = "<group>"; };
@@ -97,9 +107,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE3E62182AC681DA00A45060 /* SMCLightSensor */ = {
+			isa = PBXGroup;
+			children = (
+				EE3E62192AC6820100A45060 /* SMCLightSensor.cpp */,
+				EE3E621A2AC6820100A45060 /* SMCLightSensor.hpp */,
+				EE3E62292AC685BB00A45060 /* AmbientLightValue.cpp */,
+				EE3E622A2AC685BB00A45060 /* AmbientLightValue.hpp */,
+			);
+			path = SMCLightSensor;
+			sourceTree = "<group>";
+		};
 		EE5294CE2AB2D5340010D50D = {
 			isa = PBXGroup;
 			children = (
+				EE3E62132AC6813A00A45060 /* VirtualSMCSDK */,
 				EEA37FC72ABA9FB500B31609 /* Include */,
 				EE5294DA2AB2D5340010D50D /* CrosEC */,
 				EE33E8012AC3E3B40093E3E7 /* CrosECVersion */,
@@ -121,8 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				EE5294DF2AB2D5340010D50D /* Info.plist */,
-				EEA37FCB2ABAA30900B31609 /* CrosECDevices */,
 				EEA37FCA2ABAA2E700B31609 /* CrosECBus */,
+				EEA37FCB2ABAA30900B31609 /* CrosECDevices */,
+				EE3E62182AC681DA00A45060 /* SMCLightSensor */,
 			);
 			path = CrosEC;
 			sourceTree = "<group>";
@@ -167,9 +190,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE5294DC2AB2D5340010D50D /* CrosECBus.hpp in Headers */,
+				EE3E621C2AC6820100A45060 /* SMCLightSensor.hpp in Headers */,
 				EEA37FDA2ABBD06C00B31609 /* CrosECSensorHub.hpp in Headers */,
 				EEA37FD42ABAA3D700B31609 /* CrosECKeyboardBacklight.hpp in Headers */,
 				EE38E9092AC0B17500EF14F3 /* CrosECUserClient.hpp in Headers */,
+				EE3E622C2AC685BB00A45060 /* AmbientLightValue.hpp in Headers */,
 				EE5296D22ABA718F00DD3CFE /* CrosECDeviceNub.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3E62142AC6813A00A45060 /* VirtualSMCSDK in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +296,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3E622B2AC685BB00A45060 /* AmbientLightValue.cpp in Sources */,
+				EE3E621B2AC6820100A45060 /* SMCLightSensor.cpp in Sources */,
 				EEA37FD92ABBD06C00B31609 /* CrosECSensorHub.cpp in Sources */,
 				EE5296D12ABA718F00DD3CFE /* CrosECDeviceNub.cpp in Sources */,
 				EEA37FD32ABAA3D700B31609 /* CrosECKeyboardBacklight.cpp in Sources */,
@@ -350,10 +378,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/VirtualSMC.kext/Contents/Resources/**",
+					"${PROJECT_DIR}/Lilu.kext/Contents/Resources/**",
+				);
 				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
 				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MODULE_STOP = cros_ec_kern_stop;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -406,10 +439,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/VirtualSMC.kext/Contents/Resources/**",
+					"${PROJECT_DIR}/Lilu.kext/Contents/Resources/**",
+				);
 				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
 				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MODULE_STOP = cros_ec_kern_stop;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;

@@ -39,6 +39,7 @@ enum {
 // Commands
 enum {
     kCrosCMD_Version            = 0x02,
+    kCrosCMD_Keyboard_Backlight = 0x23,
     kCrosCMD_Motion_Sense       = 0x2B,
 };
 

@@ -93,11 +93,6 @@ bool CrosECSensorHub::start(IOService *provider) {
         return false;
     }
     
-    framebuffer = getFramebuffer();
-    if (framebuffer == nullptr) {
-        return false;
-    }
-    
     // Grab Workloop from CrosECBus
     workloop = getWorkLoop();
     if (workloop == nullptr) {
@@ -205,8 +200,16 @@ void CrosECSensorHub::rotateDevice(TabletOrientation_t newOrientation) {
         default: return;
     }
     
-    framebuffer->requestProbe(probe);
-    tabletOrientation = newOrientation;
+    // Framebuffer does not exist when this kext loads
+    // Try to find it here
+    if (framebuffer == nullptr) {
+        framebuffer = getFramebuffer();
+    }
+    
+    if (framebuffer != nullptr) {
+        framebuffer->requestProbe(probe);
+        tabletOrientation = newOrientation;
+    }
 }
 
 void CrosECSensorHub::readLidSensorGated(IOTimerEventSource *sender) {
