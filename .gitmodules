@@ -1,0 +1,3 @@
+[submodule "Dependencies/VirtualSMC"]
+	path = Dependencies/VirtualSMC
+	url = git@github.com:acidanthera/VirtualSMC.git

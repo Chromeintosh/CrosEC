@@ -9,7 +9,7 @@
 #define SMCLightSensor_hpp
 
 #include <IOKit/IOService.h>
-#include <kern_vsmcapi.hpp>
+#include <VirtualSMCSDK/kern_vsmcapi.hpp>
 #include <kern_util.hpp>
 
 #include <IOKit/acpi/IOACPIPlatformDevice.h>
