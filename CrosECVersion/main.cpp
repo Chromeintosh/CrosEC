@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
     CrosECUserCommandResponse response;
     request.command = kCrosCMD_Version;
     request.version = 0;
-    request.receiveSize = sizeof(ECVersion);
+    request.maxReceiveSize = sizeof(ECVersion);
     request.sendSize = 0;
     
     size_t requestSize = sizeof(request);
